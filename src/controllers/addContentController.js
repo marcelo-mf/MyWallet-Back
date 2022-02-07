@@ -29,10 +29,7 @@ async function income(req, res) {
         const date = dayjs().format('DD/MM'); 
 
         const session = await db.collection('sessions').findOne({token: entrada.token});
-        console.log(entrada);
-        console.log(session);
         const user = await db.collection('users').findOne({_id: session.userId});
-        console.log(user)
 
         const list = {value: value, description: entrada.description, date: date, userId: user._id, type: 'entrada'}
 
@@ -76,14 +73,9 @@ async function expense(req, res) {
         const date = dayjs().format('DD/MM');
 
         const session = await db.collection('sessions').findOne({token: saida.token});
-        console.log(saida);
-        console.log(session);
         const user = await db.collection('users').findOne({_id: session.userId});
-        console.log(user)
-        console.log(value)
 
         const list = {value: value, description: saida.description, date: date, userId: user._id, type: 'saida'}
-        console.log(list)
 
         if(!user) {
 

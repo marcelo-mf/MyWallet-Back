@@ -10,7 +10,6 @@ export default async function getList(req, res) {
 
         const authorization = req.headers.authorization;
         const token = authorization?.replace('Bearer ', '');
-        console.log(token);
 
         if(!token) {
             res.sendStatus(401);
@@ -24,11 +23,8 @@ export default async function getList(req, res) {
             return;
         }
 
-        const user = await db.collection('users').findOne({_id: session.userId});
-        console.log(user);
-        
+        const user = await db.collection('users').findOne({_id: session.userId});       
         const list = await db.collection('list').find({userId: user._id}).toArray();
-        console.log(list);
 
         if(user) {
 
