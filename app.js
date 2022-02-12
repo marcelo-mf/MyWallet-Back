@@ -10,6 +10,6 @@ server.use(express.json());
 server.use(contentRouter);
 server.use(authRouter);
 
-server.listen(5000, () => {
-    console.log('ok');
+server.listen(process.env.PORT, () => {
+    console.log("Server running on port " + process.env.PORT);
 });
